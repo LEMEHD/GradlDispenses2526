@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Liste des cours</title>
+</head>
+<body>
+
+	<h1>Liste des cours 2</h1>
+<div th:if="${#lists.size(listeCours) > 0}">
+	<div th:each="cours,idx:${listeCours}">
+	 <div th:object="${cours}">
+	  <h2 th:text="${idx.count}+' ) '+ *{code}">code</h2> 
+	  <a th:href="@{/cours/info(code=*{code})}"> Info du cours</a>
+	  <p th:text="#{cours.nom}   +' : '+  *{nom}">nom</p>
+	  <p th:text="#{cours.periodes}  +' : '+  *{nbPeriodes}">périodes: 80</p>
+	  </div>
+	</div>
+</div>	
+<div th:unless="${not #lists.isEmpty(listeCours)}"> 
+  <h2>Pas de cours</h2> 
+</div>
+
+</body>
+</html>
