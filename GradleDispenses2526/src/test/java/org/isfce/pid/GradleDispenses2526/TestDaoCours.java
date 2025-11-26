@@ -9,8 +9,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import org.isfce.pid.GradleDispenses2526.dao.CoursDao;
-import org.isfce.pid.GradleDispenses2526.dao.UeDao;
+import org.isfce.pid.GradleDispenses2526.dao.ICoursDao;
+import org.isfce.pid.GradleDispenses2526.dao.IUeDao;
 import org.isfce.pid.GradleDispenses2526.model.Acquis;
 import org.isfce.pid.GradleDispenses2526.model.Cours;
 import org.isfce.pid.GradleDispenses2526.model.UE;
@@ -27,9 +27,9 @@ import jakarta.transaction.Transactional;
 @SpringBootTest
 class TestDaoCours {
 	@Autowired
-	CoursDao daoCours;
+	ICoursDao daoCours;
 	@Autowired
-	UeDao daoUe;
+	IUeDao daoUe;
 
 	@Test
 	@Transactional

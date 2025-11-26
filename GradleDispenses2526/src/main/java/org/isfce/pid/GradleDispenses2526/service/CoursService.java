@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.isfce.pid.GradleDispenses2526.dao.CoursDao;
+import org.isfce.pid.GradleDispenses2526.dao.ICoursDao;
 import org.isfce.pid.GradleDispenses2526.model.Cours;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class CoursService {
 	private List<Cours> listeCours = new ArrayList<>();
 	@Autowired
-	CoursDao daoCours;
+	ICoursDao daoCours;
 	public CoursService() {
 		listeCours.add(new Cours("IPID", "Projet d'intégration", (short) 100));
 		listeCours.add(new Cours("IPDB", "Projet de SGBDR", (short) 80));

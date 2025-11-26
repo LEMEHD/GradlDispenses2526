@@ -7,7 +7,7 @@ import java.util.Locale;
 import java.util.Optional;
 
 import org.isfce.pid.GradleDispenses2526.controller.error.DuplicateException;
-import org.isfce.pid.GradleDispenses2526.dao.UeDao;
+import org.isfce.pid.GradleDispenses2526.dao.IUeDao;
 import org.isfce.pid.GradleDispenses2526.model.Acquis;
 import org.isfce.pid.GradleDispenses2526.model.Cours;
 import org.isfce.pid.GradleDispenses2526.model.UE;
@@ -77,7 +77,7 @@ public class CoursControllerRest {
 		return ResponseEntity.ok(code);
 	}
 	@Autowired
-	UeDao daoUe;
+	IUeDao daoUe;
 	@GetMapping("listeUE")
 	ResponseEntity<List<UE>> getListeUE() {
 		daoUe.deleteById("IPAP");
