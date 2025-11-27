@@ -16,6 +16,7 @@ import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 @AllArgsConstructor
@@ -24,6 +25,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(exclude = "acquis")
 @Entity(name = "TUE")
 @Getter
+@Setter
 public class UE {
 	@Id
 	@Column(length = 20)

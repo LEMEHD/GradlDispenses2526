@@ -23,7 +23,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
-public class RequestController {
+public class RequestControllerRest {
 
     private final ExemptionService svc;
 

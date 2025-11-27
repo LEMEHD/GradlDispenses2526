@@ -167,7 +167,15 @@ public class ExemptionService {
 
                 // Créer les items de dispense pour les UE cibles (Target)
                 for (KbCorrespondenceRuleTarget tgt : rule.getTargets()) {
-                    UE ueCible = tgt.getUe(); // C'est bien notre entité riche UE !
+                    UE ueCible = tgt.getUe();
+
+                    // CORRECTION : Vérifier si une dispense pour cette UE existe déjà dans la demande
+                    boolean existeDeja = req.getItems().stream()
+                            .anyMatch(i -> i.getUe().getCode().equals(ueCible.getCode()));
+
+                    if (existeDeja) {
+                        continue; // On passe, on a déjà traité cette UE via une autre règle
+                    }
 
                     ExemptionItem item = ExemptionItem.builder()
                             .request(req)
