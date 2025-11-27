@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class ExemptionService {
 
     // On injecte tous les DAOs nécessaires
-    private final IEtudiantDao etuDao;
+    private final IStudentDao etuDao;
     private final IUeDao ueDao;
     private final IExemptionRequestDao reqDao;
     private final IExternalCourseDao extCourseDao;
@@ -98,7 +98,7 @@ public class ExemptionService {
     
     // Récupère une UE précise via son code (ex: "IPAP")
     public UE getUE(String code) {
-        return ueDao.findById(code)
+        return ueDao.findByCode(code)
                 .orElseThrow(() -> new IllegalArgumentException("UE introuvable avec le code : " + code));
     }
 

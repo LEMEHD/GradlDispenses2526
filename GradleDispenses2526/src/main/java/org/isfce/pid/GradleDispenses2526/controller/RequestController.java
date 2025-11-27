@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import io.swagger.v3.oas.annotations.Parameter;
+
 import java.net.URI;
 import java.util.List;
 import java.util.UUID;
@@ -23,7 +25,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
-public class RequestControllerRest {
+public class RequestController {
 
     private final ExemptionService svc;
 
@@ -31,7 +33,7 @@ public class RequestControllerRest {
     @PostMapping("/requests")
     public ResponseEntity<ExemptionRequestDTO> create(
             @Valid @RequestBody CreateRequestDTO dto,
-            Authentication auth
+            @Parameter(hidden = true) Authentication auth // <--- On cache pour Swagger
     ) {
         // Authentication vient de Spring Security (on le configurera à l'étape suivante)
         String email = (auth != null) ? auth.getName() : "etudiant@isfce.be"; // Fallback temporaire pour tests sans sécu
@@ -78,7 +80,9 @@ public class RequestControllerRest {
 
 	// ——— LISTER MES DEMANDES ———
     @GetMapping("/requests/mine")
-    public List<ExemptionRequestDTO> mine(Authentication auth) {
+    public List<ExemptionRequestDTO> mine(
+    		@Parameter(hidden = true) Authentication auth
+    		) {
         String email = (auth != null) ? auth.getName() : "etudiant@isfce.be";
         return svc.myRequests(email);
     }

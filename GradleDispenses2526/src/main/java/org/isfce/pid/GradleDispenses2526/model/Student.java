@@ -9,8 +9,9 @@ import lombok.*;
 @NoArgsConstructor @AllArgsConstructor @Builder
 @Entity @Table(name = "STUDENT", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Student extends BaseEntity {
-
-    @NotBlank @Email
+	
+	@NotBlank(message = "{err.student.email.blank}")
+    @Email(message = "{err.email.invalid}")
     @Column(nullable = false, unique = true)
     private String email;
 

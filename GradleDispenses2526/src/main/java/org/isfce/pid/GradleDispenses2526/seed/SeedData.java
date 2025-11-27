@@ -45,7 +45,7 @@ public class SeedData {
     @Transactional // Important pour gérer les relations proprement
     public void seedUEs() {
         // UE Complexe (IPAP)
-        if (!ueDao.existsById("IPAP")) {
+        if (!ueDao.existsByCode("IPAP")) {
             createIPAP();
         }
         // UEs Administratives (Liste du PDF)
@@ -141,7 +141,7 @@ public class SeedData {
     // ===================================================================================
 
     private void createUeIfMissing(String code, String nom, int ects, int periodes) {
-        if (!ueDao.existsById(code)) {
+        if (!ueDao.existsByCode(code)) {
             ueDao.save(UE.builder()
                     .code(code).ref("REF-" + code).nom(nom).ects(ects).nbPeriodes(periodes)
                     .build());
@@ -180,7 +180,7 @@ public class SeedData {
         
         // Ajout des cibles
         targetUeCodes.forEach(ueCode -> {
-            ueDao.findById(ueCode).ifPresent(ue -> 
+            ueDao.findByCode(ueCode).ifPresent(ue -> 
                 rule.addTarget(KbCorrespondenceRuleTarget.builder().rule(rule).ue(ue).build())
             );
         });

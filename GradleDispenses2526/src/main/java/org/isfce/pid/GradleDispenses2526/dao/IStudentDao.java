@@ -6,6 +6,6 @@ import java.util.*;
 
 
 
-public interface IEtudiantDao extends JpaRepository<Student, UUID> {
+public interface IStudentDao extends JpaRepository<Student, UUID> {
     Optional<Student> findByEmail(String email);
 }

@@ -2,35 +2,39 @@ package org.isfce.pid.GradleDispenses2526.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@Getter
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
-@Entity(name = "TACQUIS")
-public class Acquis {
+@AllArgsConstructor
+@Builder
+@EqualsAndHashCode(callSuper = true) // Important pour BaseEntity
+@Entity
+@Table(name = "TACQUIS")
+public class Acquis extends BaseEntity {
 	
+    // L'ID est hérité de BaseEntity (UUID)
+
+    @NotBlank(message = "{err.acquis.desc.blank}")
+    @Column(length = 500, nullable = false)
+    private String description; // Ex: "Maîtriser les boucles"
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	@Column(length = 500)
-	private String acquis;
+    @Min(value = 1, message = "{err.acquis.pct.min}")
+    @Max(value = 100, message = "{err.acquis.pct.max}")
+    @Column(nullable = false)
+    private Integer pourcentage;
 	
-	@Min(value = 1, message = "{err.aquis.pourcentage.min}")
-	@Max(value = 100, message = "{err.aquis.pourcentage.max}")
-	private Integer pourcentage;
-	
-	
-	public Acquis(String acquis, int pourcentage) {
-		this.acquis = acquis;
-		this.pourcentage = pourcentage;
-	}
+    // Constructeur pratique pour tes tests/SeedData
+    public Acquis(String description, int pourcentage) {
+        this.description = description;
+        this.pourcentage = pourcentage;
+    }
 }

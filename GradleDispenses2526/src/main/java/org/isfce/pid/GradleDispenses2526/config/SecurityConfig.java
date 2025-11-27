@@ -42,6 +42,9 @@ public class SecurityConfig {
         http.authorizeHttpRequests(auth -> auth
             // Autoriser l'accès à la console H2
             .requestMatchers("/h2-console/**").permitAll()
+            // AUTORISER SWAGGER EXPLICITEMENT
+            .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
+            .requestMatchers("/api/**").authenticated()
             // L'API nécessite une authentification
             .requestMatchers("/api/**").authenticated()
             // Le reste est public (si tu as d'autres pages)
