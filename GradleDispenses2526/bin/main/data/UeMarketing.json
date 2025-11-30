@@ -1,0 +1,33 @@
+[
+  {
+    "code": "MARKET",
+    "ref": "89469645",
+    "nom": "Cours de marketing",
+    "ects": 7,
+    "nbPeriodes": 80,
+    "niveau": 1,
+    "prgm": "- Comprendre des trucs",
+    "acquis": [
+      { "description": "Comprendre des trucs", "pourcentage": 1 },
+      { "description": "Comprendre des trucs", "pourcentage": 1 },
+      { "description": "Comprendre des trucs", "pourcentage": 1 },
+      { "description": "Comprendre des trucs", "pourcentage": 1 },
+      { "description": "Comprendre des trucs", "pourcentage": 1 }
+    ]
+  },
+  {
+      "code": "IPAP",
+      "ref": "7521 05 U32 D3",
+      "nom": "PRINCIPES ALGORITHMIQUES ET PROGRAMMATION",
+      "ects": 8,
+      "nbPeriodes": 120,
+      "niveau": 1,
+      "prgm": "- Identifier différents langages de programmation existants\n- Mettre en œuvre une méthodologie de résolution de problème (observation, résolution, expérimentation, validation) et la justifier en fonction de l’objectif poursuivi\n- Concevoir, construire et représenter des algorithmes en utilisant :\n    • Les types de données élémentaires\n    • Les figures algorithmiques de base (séquence, alternative, répétitive)\n    • Les instructions\n    • Les portées des variables\n    • Les fonctions et procédures\n    • La récursivité\n    • Les entrées/sorties\n    • Les fichiers\n    • Les structures de données de base (tableaux et enregistrements)\n- Traduire adéquatement des algorithmes en respectant les spécificités du langage utilisé (JAVA, PYTHON)\n- Documenter de manière complète et précise les programmes développés\n- Produire des tests pour valider les programmes développés",
+      "acquis": [
+        { "description": "Mettre en oeuvre une représentation algorithmique du problème posé", "pourcentage": 30 },
+        { "description": "Développer au moins un programme en respectant les spécificités du langage choisi", "pourcentage": 30 },
+        { "description": "Mettre en oeuvre des procédures de test", "pourcentage": 20 },
+        { "description": "Justifier la démarche mise en oeuvre dans l’élaboration du (ou des) programme(s)", "pourcentage": 20 }
+      ]
+    }
+ ]

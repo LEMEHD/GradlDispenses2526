@@ -1,7 +1,6 @@
 package org.isfce.pid.GradleDispenses2526.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import java.util.Set;
 import java.util.HashSet;
@@ -15,8 +14,9 @@ public class ExemptionRequest extends BaseEntity {
     @ToString.Exclude
     private Student etudiant;
 
-    @NotBlank @Column(nullable = false)
-    private String section; // ex: Informatique
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Section section;
 
     @Enumerated(EnumType.STRING) @Column(nullable = false)
     @Builder.Default

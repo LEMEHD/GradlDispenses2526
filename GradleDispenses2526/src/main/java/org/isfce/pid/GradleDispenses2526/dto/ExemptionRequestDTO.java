@@ -26,7 +26,7 @@ public record ExemptionRequestDTO(
 
         return new ExemptionRequestDTO(
                 r.getId(),
-                r.getSection(),
+                r.getSection().getLabel(),
                 r.getStatut().name(),
                 r.getCreatedAt(),       // si @EnableJpaAuditing est activé
                 r.getUpdatedAt(),

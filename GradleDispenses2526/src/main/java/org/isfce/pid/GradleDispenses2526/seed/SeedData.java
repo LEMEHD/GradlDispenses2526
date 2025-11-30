@@ -14,7 +14,10 @@ import org.springframework.core.io.ClassPathResource; // <--- Pour lire le fichi
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @Configuration
 public class SeedData {
@@ -37,86 +40,86 @@ public class SeedData {
     @Bean
     ApplicationRunner runner() {
         return args -> {
-            System.out.println("🌱 SEEDING : Démarrage de l'initialisation...");
-            
-            // 1. Initialiser les UE ISFCE (Le catalogue interne)
+            System.out.println("🌱 SEEDING : Démarrage...");
             seedUEs();
-
-            // 2. Initialiser la Base de Connaissances (Écoles et Règles)
             if (schoolDao.count() == 0) {
                 seedKnowledgeBase();
             }
-
-            System.out.println("✅ SEEDING TERMINÉ : Base de données prête !");
+            System.out.println("✅ SEEDING TERMINÉ !");
         };
     }
 
     @Transactional
     public void seedUEs() {
-        try {
-            // On cherche le fichier dans src/main/resources/data/ues.json
-            ClassPathResource resource = new ClassPathResource("data/ues.json");
-            
-            if (!resource.exists()) {
-                System.out.println("⚠️ Fichier ues.json introuvable. Créez-le dans src/main/resources/data/");
-                return;
-            }
+        // Mapping entre l'Enum Section et le nom du fichier JSON
+        Map<Section, String> files = Map.of(
+            Section.INFO, "UeInformatique.json",
+            Section.COMPTA, "UeComptabilite.json",
+            Section.MARKETING, "UeMarketing.json",
+            Section.ASSISTANT, "UeAssistantDirection.json"
+        );
 
-            // On lit le fichier et on le transforme en liste d'objets Java
-            InputStream inputStream = resource.getInputStream();
-            List<UeSeedDTO> uesFromFile = mapper.readValue(inputStream, new TypeReference<List<UeSeedDTO>>(){});
-
-            // Pour chaque UE du fichier, on l'insère en base de données
-            for (UeSeedDTO dto : uesFromFile) {
-                // Conversion des petits DTO Acquis vers le modèle Acquis complet
-                List<Acquis> acquisModel = new ArrayList<>();
-                if (dto.acquis() != null) {
-                    for (AcquisSeedDTO a : dto.acquis()) {
-                        acquisModel.add(new Acquis(a.description(), a.pourcentage()));
-                    }
-                }
-
-                // Appel de la méthode générique
-                createFullUE(
-                    dto.code(),
-                    dto.ref(),
-                    dto.nom(),
-                    dto.nbPeriodes(),
-                    dto.ects(),
-                    dto.niveau(),
-                    dto.prgm(),
-                    acquisModel
-                );
-            }
-            System.out.println("✅ " + uesFromFile.size() + " UEs chargées depuis ues.json");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println("❌ Erreur critique lors du chargement des UE : " + e.getMessage());
+        for (Map.Entry<Section, String> entry : files.entrySet()) {
+            loadUesForSection(entry.getKey(), "data/" + entry.getValue());
         }
     }
 
-    // --- Méthode Générique pour insérer n'importe quelle UE ---
-    private void createFullUE(String code, String ref, String nom, int nbPeriodes, int ects, int niveau, String prgm, List<Acquis> listeAcquis) {
-        // On évite les doublons
-        if (!ueDao.existsByCode(code)) {
-            UE ue = UE.builder()
-                    .code(code)
-                    .ref(ref)
-                    .nom(nom)
-                    .nbPeriodes(nbPeriodes)
-                    .ects(ects)
-                    .niveau(niveau)
-                    .prgm(prgm) // Peut être null, c'est OK
-                    .build();
-
-            // Si on a des acquis, on les ajoute
-            if (listeAcquis != null && !listeAcquis.isEmpty()) {
-                ue.setAcquis(listeAcquis);
+    private void loadUesForSection(Section section, String filePath) {
+        try {
+            ClassPathResource resource = new ClassPathResource(filePath);
+            if (!resource.exists()) {
+                System.out.println("⚠️ Fichier introuvable (ignoré) : " + filePath);
+                return;
             }
-            
-            ueDao.save(ue);
+
+            InputStream inputStream = resource.getInputStream();
+            List<UeSeedDTO> uesFromFile = mapper.readValue(inputStream, new TypeReference<List<UeSeedDTO>>(){});
+
+            for (UeSeedDTO dto : uesFromFile) {
+                addOrUpdateUE(dto, section);
+            }
+            System.out.println("--> Chargé " + uesFromFile.size() + " cours pour la section " + section);
+
+        } catch (Exception e) {
+            System.err.println("❌ Erreur lors du chargement de " + filePath + ": " + e.getMessage());
         }
+    }
+
+    private void addOrUpdateUE(UeSeedDTO dto, Section section) {
+        // 1. On cherche si l'UE existe déjà (par son code)
+        Optional<UE> existingOpt = ueDao.findByCode(dto.code());
+        UE ue;
+
+        if (existingOpt.isPresent()) {
+            // CAS : Mise à jour -> On récupère l'existant
+            ue = existingOpt.get();
+        } else {
+            // CAS : Création -> On construit le neuf
+            ue = UE.builder()
+                    .code(dto.code())
+                    .ref(dto.ref()) // <--- C'est ici que ça coince si le ref existe déjà ailleurs !
+                    .nom(dto.nom())
+                    .nbPeriodes(dto.nbPeriodes())
+                    .ects(dto.ects())
+                    .niveau(dto.niveau())
+                    .prgm(dto.prgm())
+                    .sections(new HashSet<>())
+                    .build();
+            
+            if (dto.acquis() != null) {
+                List<Acquis> acquisList = new ArrayList<>();
+                for (AcquisSeedDTO a : dto.acquis()) {
+                    acquisList.add(new Acquis(a.description(), a.pourcentage()));
+                }
+                ue.setAcquis(acquisList);
+            }
+        }
+
+        // 2. On ajoute la section (qu'il soit nouveau ou existant)
+        ue.getSections().add(section);
+
+        // 3. On sauvegarde une seule fois à la fin
+        ueDao.save(ue);
     }
 
     @Transactional

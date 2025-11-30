@@ -36,7 +36,7 @@ public class ExemptionService {
                 .orElseGet(() -> etuDao.save(Student.builder().email(email).build()));
     }
 
-    public ExemptionRequest createDraft(String email, String section) {
+    public ExemptionRequest createDraft(String email, Section section) {
         Student e = getOrCreateByEmail(email);
         ExemptionRequest req = ExemptionRequest.builder().etudiant(e).section(section).build();
         return reqDao.save(req);
@@ -101,6 +101,23 @@ public class ExemptionService {
         return ueDao.findByCode(code)
                 .orElseThrow(() -> new IllegalArgumentException("UE introuvable avec le code : " + code));
     }
+    
+    public void deleteRequest(UUID id) {
+        ExemptionRequest req = reqDao.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Demande introuvable"));
+
+        // Sécurité optionnelle : on ne supprime que les brouillons
+        if (req.getStatut() != StatutDemande.DRAFT) {
+            throw new IllegalStateException("Impossible de supprimer une demande déjà soumise (" + req.getStatut() + ")");
+        }
+
+        reqDao.delete(req);
+    }
+    
+    public List<KbSchool> getAllSchools() {
+        return kbSchoolDao.findAll();
+    }
+
 
     // ————— LE CŒUR DU SYSTÈME : SOUMISSION & MATCHING INTELLIGENT —————
 

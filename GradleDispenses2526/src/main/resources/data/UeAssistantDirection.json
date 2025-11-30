@@ -1,0 +1,18 @@
+[
+  {
+    "code": "DIR",
+    "ref": "26515615",
+    "nom": "Cours assistant dir",
+    "ects": 7,
+    "nbPeriodes": 80,
+    "niveau": 1,
+    "prgm": "- Comprendre des trucs",
+    "acquis": [
+      { "description": "Comprendre des trucs", "pourcentage": 1 },
+      { "description": "Comprendre des trucs", "pourcentage": 1 },
+      { "description": "Comprendre des trucs", "pourcentage": 1 },
+      { "description": "Comprendre des trucs", "pourcentage": 1 },
+      { "description": "Comprendre des trucs", "pourcentage": 1 }
+    ]
+  }
+ ]

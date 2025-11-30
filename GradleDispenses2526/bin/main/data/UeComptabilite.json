@@ -1,0 +1,31 @@
+[
+  {
+    "code": "COMPTA",
+    "ref": "484549",
+    "nom": "Cours de compta",
+    "ects": 7,
+    "nbPeriodes": 80,
+    "niveau": 1,
+    "prgm": "- Comprendre des trucs",
+    "acquis": [
+      { "description": "Comprendre des trucs", "pourcentage": 1 },
+      { "description": "Comprendre des trucs", "pourcentage": 1 },
+      { "description": "Comprendre des trucs", "pourcentage": 1 },
+      { "description": "Comprendre des trucs", "pourcentage": 1 },
+      { "description": "Comprendre des trucs", "pourcentage": 1 }
+    ]
+  },
+  {
+      "code": "IIBD",
+      "ref": "2982 21 U31 D1",
+      "nom": "INITIATION AUX BASES DE DONNEES",
+      "ects": 5,
+      "nbPeriodes": 60,
+      "niveau": 1,
+      "prgm": "- Définir une base de données et présenter les éléments essentiels d'un SGBD\n- Créer une table et un index en utilisant différents types de données\n- Expliciter les mécanismes relationnels et le schéma relationnel\n- Utiliser une clé primaire, les vues et les tables à jonctions (jointure)\n- Utiliser les éléments essentiels d'un langage tel que SQL pour créer des tables\n- Effectuer des sélections (tri, élimination doublons, création champs, jointure, regroupement)\n- Appliquer les opérations ensemblistes en SQL\n- Importer et exporter des données",
+      "acquis": [
+        { "description": "Utilisation pertinente de toutes les techniques présentées dans le programme", "pourcentage": 1 },
+        { "description": "Degré d'autonomie atteint", "pourcentage": 1 }
+      ]
+    }
+ ]

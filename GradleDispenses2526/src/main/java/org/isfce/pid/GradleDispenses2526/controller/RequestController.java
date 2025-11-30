@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import org.isfce.pid.GradleDispenses2526.dto.*;
 import org.isfce.pid.GradleDispenses2526.model.ExemptionRequest;
 import org.isfce.pid.GradleDispenses2526.model.ExternalCourse;
+import org.isfce.pid.GradleDispenses2526.model.KbSchool;
+import org.isfce.pid.GradleDispenses2526.model.Section;
 import org.isfce.pid.GradleDispenses2526.model.SupportingDocument;
 import org.isfce.pid.GradleDispenses2526.model.TypeDocument;
 import org.isfce.pid.GradleDispenses2526.model.UE;
@@ -100,9 +102,28 @@ public class RequestController {
         return svc.listUE();
     }
 
-    // ——— DÉTAIL D'UNE UE (Nouveau !) ———
+    // ——— DÉTAIL D'UNE UE  ———
     @GetMapping("/ue/{code}")
     public UE oneUE(@PathVariable String code) {
         return svc.getUE(code);
+    }
+    
+    // ——— LISTE DES SECTIONS (Pour le select du frontend) ———
+    @GetMapping("/sections")
+    public Section[] getSections() {
+        return Section.values();
+    }
+    
+    // ——— SUPPRESSION D'UNE DEMANDE ———
+    @DeleteMapping("/requests/{id}")
+    public ResponseEntity<Void> delete(@PathVariable UUID id) {
+        svc.deleteRequest(id);
+        return ResponseEntity.noContent().build();
+    }
+    
+    // ——— LISTE DES ÉCOLES (Pour l'auto-complétion) ———
+    @GetMapping("/schools")
+    public List<KbSchool> getSchools() {
+        return svc.getAllSchools();
     }
 }

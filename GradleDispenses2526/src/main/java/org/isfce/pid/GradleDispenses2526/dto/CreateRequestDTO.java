@@ -1,5 +1,10 @@
 package org.isfce.pid.GradleDispenses2526.dto;
 
-import jakarta.validation.constraints.*;
+import org.isfce.pid.GradleDispenses2526.model.Section;
 
-public record CreateRequestDTO(@NotBlank String section) { }
+import jakarta.validation.constraints.NotNull;
+
+public record CreateRequestDTO(
+    @NotNull(message = "La section est obligatoire") 
+    Section section 
+) {}

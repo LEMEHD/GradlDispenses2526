@@ -1,10 +1,15 @@
 package org.isfce.pid.GradleDispenses2526.model;
 
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
@@ -18,6 +23,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import jakarta.validation.constraints.Max;
+import java.util.HashSet;
+
 
 @Data // Génère Getter, Setter, etc.
 @NoArgsConstructor
@@ -59,5 +66,12 @@ public class UE extends BaseEntity { // <--- On étend BaseEntity
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "FKUE")
     private List<Acquis> acquis;
+    
+    @ElementCollection(targetClass = Section.class, fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(name = "UE_SECTIONS", joinColumns = @JoinColumn(name = "ue_id"))
+    @Column(name = "section")
+    @Builder.Default
+    private Set<Section> sections = new HashSet<>();
     
 }
