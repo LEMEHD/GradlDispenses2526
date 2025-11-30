@@ -1,85 +1,181 @@
 import { Link } from 'react-router-dom';
-import { FileText, PlusCircle, BookOpen, User, ArrowRight, GraduationCap } from 'lucide-react';
+import { FileText, PlusCircle, BookOpen, User, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
+
+// Configuration du Carrousel
+const SLIDES = [
+    {
+        // Image école
+        image: "/images/banniere_ecole.jpg",
+        title: "Formation Continue",
+        subtitle: "L'excellence académique au cœur de Bruxelles."
+    },
+    {
+        // Assistant de direction
+        image: "/images/banniere_assistant.jpg",
+        title: "Assistant de direction",
+        subtitle: "Bachelier",
+
+    },
+    {
+        // Comptabilité
+        image: "/images/banniere_compta.jpg",
+        title: "Comptabilité & Gestion",
+        subtitle: "Bachelier"
+    },
+    {
+        // Image informatique / code
+        image: "/images/banniere_informatique.jpg",
+        title: "Informatique, Développement d'applications",
+        subtitle: "Bachelier",
+
+    },
+    {
+        // Image gestion / bureau
+        image: "/images/banniere_marketing.jpg",
+        title: "Marketing",
+        subtitle: "Bachelier"
+    }
+];
 
 export const LandingPage = () => {
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    // Changement automatique d'image toutes les 5 secondes
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % SLIDES.length);
+        }, 5000);
+        return () => clearInterval(timer);
+    }, []);
+
+    const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % SLIDES.length);
+    const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + SLIDES.length) % SLIDES.length);
+
     return (
-        <div className="min-h-screen bg-gray-50">
-            {/* Hero Section (Bannière style ISFCE) */}
-            <div className="bg-blue-900 text-white py-16">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex items-center space-x-4 mb-6">
-                        <div className="p-3 bg-white/10 rounded-lg">
-                            <GraduationCap className="w-12 h-12 text-white" />
-                        </div>
-                        <div>
-                            <h1 className="text-4xl font-bold tracking-tight">Portail Étudiant</h1>
-                            <p className="text-blue-200 mt-1 text-lg">Institut Supérieur de Formation Continue d'Etterbeek</p>
+        <div className="min-h-screen bg-gray-50 flex flex-col">
+
+            {/* --- CARROUSEL BANIÈRE --- */}
+            <div className="relative h-[500px] w-full overflow-hidden bg-gray-900">
+                {/* Images */}
+                {SLIDES.map((slide, index) => (
+                    <div
+                        key={index}
+                        className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                            index === currentSlide ? 'opacity-100' : 'opacity-0'
+                        }`}
+                    >
+                        {/* Overlay sombre pour que le texte soit lisible */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-transparent z-10" />
+                        <img
+                            src={slide.image}
+                            alt={slide.title}
+                            className="w-full h-full object-cover"
+                        />
+
+                        {/* Texte sur la bannière */}
+                        <div className="absolute inset-0 z-20 flex items-center px-6 lg:px-16">
+                            <div className="max-w-3xl text-white transform transition-all duration-700 translate-y-0">
+                                <h1 className="text-5xl font-bold mb-4 drop-shadow-lg">{slide.title}</h1>
+                                <p className="text-xl text-blue-100 drop-shadow-md border-l-4 border-yellow-400 pl-4">
+                                    {slide.subtitle}
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <p className="max-w-2xl text-blue-100 text-lg">
-                        Bienvenue sur votre plateforme de gestion des dispenses. Gerez vos demandes, consultez le programme des cours et suivez votre parcours académique.
-                    </p>
+                ))}
+
+                {/* Contrôles du slider */}
+                <button onClick={prevSlide} className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-2 bg-white/10 hover:bg-white/30 rounded-full text-white backdrop-blur-sm transition">
+                    <ChevronLeft className="w-8 h-8" />
+                </button>
+                <button onClick={nextSlide} className="absolute right-4 top-1/2 -translate-y-1/2 z-30 p-2 bg-white/10 hover:bg-white/30 rounded-full text-white backdrop-blur-sm transition">
+                    <ChevronRight className="w-8 h-8" />
+                </button>
+
+                {/* Indicateurs (petits points en bas) */}
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex space-x-2">
+                    {SLIDES.map((_, idx) => (
+                        <button
+                            key={idx}
+                            onClick={() => setCurrentSlide(idx)}
+                            className={`w-3 h-3 rounded-full transition-all ${
+                                idx === currentSlide ? 'bg-yellow-400 w-8' : 'bg-white/50 hover:bg-white'
+                            }`}
+                        />
+                    ))}
                 </div>
             </div>
 
-            {/* Grille de Navigation */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8">
+            {/* --- GRILLE DE NAVIGATION --- */}
+            {/* Layout élargi : w-full et max-w-[95%] */}
+            <div className="w-full max-w-[95%] mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-30 pb-20">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
                     {/* Carte : Mes Demandes */}
-                    <Link to="/dashboard" className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1 group border-t-4 border-indigo-500">
-                        <div className="flex justify-between items-start mb-4">
-                            <div className="p-3 bg-indigo-50 rounded-lg group-hover:bg-indigo-100 transition">
-                                <FileText className="w-6 h-6 text-indigo-600" />
+                    <Link to="/dashboard" className="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-2 border-b-4 border-indigo-600 flex flex-col justify-between h-full group">
+                        <div>
+                            <div className="flex justify-between items-start mb-6">
+                                <div className="p-4 bg-indigo-50 rounded-2xl group-hover:bg-indigo-600 transition-colors duration-300">
+                                    <FileText className="w-8 h-8 text-indigo-600 group-hover:text-white transition-colors" />
+                                </div>
+                                <ArrowRight className="w-6 h-6 text-gray-300 group-hover:text-indigo-600 transition" />
                             </div>
-                            <ArrowRight className="w-5 h-5 text-gray-300 group-hover:text-indigo-500 transition" />
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Mes Demandes</h3>
+                            <p className="text-gray-500">Suivre l'état de vos dossiers de dispenses en cours.</p>
                         </div>
-                        <h3 className="text-lg font-bold text-gray-900 mb-2">Mes Demandes</h3>
-                        <p className="text-sm text-gray-500">Suivre l'état de vos dossiers de dispenses en cours.</p>
                     </Link>
 
                     {/* Carte : Nouvelle Demande */}
-                    <Link to="/new" className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1 group border-t-4 border-green-500">
-                        <div className="flex justify-between items-start mb-4">
-                            <div className="p-3 bg-green-50 rounded-lg group-hover:bg-green-100 transition">
-                                <PlusCircle className="w-6 h-6 text-green-600" />
+                    <Link to="/new" className="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-2 border-b-4 border-green-500 flex flex-col justify-between h-full group">
+                        <div>
+                            <div className="flex justify-between items-start mb-6">
+                                <div className="p-4 bg-green-50 rounded-2xl group-hover:bg-green-600 transition-colors duration-300">
+                                    <PlusCircle className="w-8 h-8 text-green-600 group-hover:text-white transition-colors" />
+                                </div>
+                                <ArrowRight className="w-6 h-6 text-gray-300 group-hover:text-green-500 transition" />
                             </div>
-                            <ArrowRight className="w-5 h-5 text-gray-300 group-hover:text-green-500 transition" />
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Nouvelle Demande</h3>
+                            <p className="text-gray-500">Introduire un nouveau dossier pour une section.</p>
                         </div>
-                        <h3 className="text-lg font-bold text-gray-900 mb-2">Nouvelle Demande</h3>
-                        <p className="text-sm text-gray-500">Introduire un nouveau dossier pour une section.</p>
                     </Link>
 
                     {/* Carte : Liste des UE */}
-                    <Link to="/ues" className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1 group border-t-4 border-blue-500">
-                        <div className="flex justify-between items-start mb-4">
-                            <div className="p-3 bg-blue-50 rounded-lg group-hover:bg-blue-100 transition">
-                                <BookOpen className="w-6 h-6 text-blue-600" />
+                    <Link to="/ues" className="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-2 border-b-4 border-blue-500 flex flex-col justify-between h-full group">
+                        <div>
+                            <div className="flex justify-between items-start mb-6">
+                                <div className="p-4 bg-blue-50 rounded-2xl group-hover:bg-blue-600 transition-colors duration-300">
+                                    <BookOpen className="w-8 h-8 text-blue-600 group-hover:text-white transition-colors" />
+                                </div>
+                                <ArrowRight className="w-6 h-6 text-gray-300 group-hover:text-blue-500 transition" />
                             </div>
-                            <ArrowRight className="w-5 h-5 text-gray-300 group-hover:text-blue-500 transition" />
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Liste des UE</h3>
+                            <p className="text-gray-500">Consulter le catalogue officiel des cours.</p>
                         </div>
-                        <h3 className="text-lg font-bold text-gray-900 mb-2">Liste des UE</h3>
-                        <p className="text-sm text-gray-500">Consulter le catalogue des cours et les ECTS associés.</p>
                     </Link>
 
                     {/* Carte : Mon Profil */}
-                    <Link to="/profile" className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1 group border-t-4 border-orange-500">
-                        <div className="flex justify-between items-start mb-4">
-                            <div className="p-3 bg-orange-50 rounded-lg group-hover:bg-orange-100 transition">
-                                <User className="w-6 h-6 text-orange-600" />
+                    <Link to="/profile" className="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-2 border-b-4 border-orange-500 flex flex-col justify-between h-full group">
+                        <div>
+                            <div className="flex justify-between items-start mb-6">
+                                <div className="p-4 bg-orange-50 rounded-2xl group-hover:bg-orange-600 transition-colors duration-300">
+                                    <User className="w-8 h-8 text-orange-600 group-hover:text-white transition-colors" />
+                                </div>
+                                <ArrowRight className="w-6 h-6 text-gray-300 group-hover:text-orange-500 transition" />
                             </div>
-                            <ArrowRight className="w-5 h-5 text-gray-300 group-hover:text-orange-500 transition" />
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Mon Profil</h3>
+                            <p className="text-gray-500">Gérer vos informations personnelles.</p>
                         </div>
-                        <h3 className="text-lg font-bold text-gray-900 mb-2">Mon Profil</h3>
-                        <p className="text-sm text-gray-500">Gérer vos informations personnelles et académiques.</p>
                     </Link>
 
                 </div>
             </div>
 
-            {/* Footer simple */}
-            <footer className="mt-20 border-t border-gray-200 py-8 text-center text-gray-500 text-sm">
-                &copy; {new Date().getFullYear()} ISFCE - Tous droits réservés.
+            {/* Footer */}
+            <footer className="mt-auto border-t border-gray-200 py-8 bg-white text-center text-gray-500 text-sm">
+                <div className="max-w-[95%] mx-auto">
+                    &copy; {new Date().getFullYear()} ISFCE - Institut Supérieur de Formation Continue d'Etterbeek.
+                </div>
             </footer>
         </div>
     );
