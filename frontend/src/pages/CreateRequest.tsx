@@ -1,25 +1,31 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query'; // Import nécessaire
 import { api } from '../services/api';
 import { ArrowLeft, Save } from 'lucide-react';
 
 export const CreateRequest = () => {
-    const [section, setSection] = useState(''); // Pour stocker ce que l'utilisateur tape
-    const [isSubmitting, setIsSubmitting] = useState(false); // Pour gérer l'état "chargement"
-    const navigate = useNavigate(); // Pour changer de page automatiquement
+    const [section, setSection] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const navigate = useNavigate();
+
+    // 1. Récupérer les sections depuis le backend
+    const { data: sections, isLoading } = useQuery({
+        queryKey: ['sections'],
+        queryFn: api.getSections
+    });
 
     const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault(); // Empêche la page de se recharger
-
-        if (!section.trim()) return; // On ne fait rien si c'est vide
+        e.preventDefault();
+        if (!section) return;
 
         setIsSubmitting(true);
         try {
-            // 1. On appelle l'API Java
-            await api.createRequest(section);
+            // 1. On crée la demande et ON RÉCUPÈRE le résultat (qui contient l'ID)
+            const newRequest = await api.createRequest(section);
 
-            // 2. Si ça marche, on retourne au tableau de bord
-            navigate('/dashboard');
+            // 2. Redirection vers la page d'édition de ce dossier spécifique
+            navigate(`/request/${newRequest.id}`);
         } catch (error) {
             alert("Erreur lors de la création du dossier !");
         } finally {
@@ -29,7 +35,6 @@ export const CreateRequest = () => {
 
     return (
         <div className="max-w-2xl mx-auto space-y-6">
-            {/* Bouton retour */}
             <button
                 onClick={() => navigate(-1)}
                 className="text-gray-500 hover:text-gray-700 flex items-center transition"
@@ -48,25 +53,46 @@ export const CreateRequest = () => {
                         <label htmlFor="section" className="block text-sm font-medium text-gray-700 mb-1">
                             Section d'études
                         </label>
-                        <input
-                            type="text"
-                            id="section"
-                            placeholder="Ex: Bachelier en Informatique de Gestion"
-                            value={section}
-                            onChange={(e) => setSection(e.target.value)}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"
-                            required
-                        />
+
+                        {/* 2. Liste Déroulante (Select) */}
+                        <div className="relative">
+                            <select
+                                id="section"
+                                value={section}
+                                onChange={(e) => setSection(e.target.value)}
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition bg-white appearance-none cursor-pointer"
+                                required
+                                disabled={isLoading}
+                            >
+                                <option value="" disabled>
+                                    {isLoading ? "Chargement des sections..." : "Sélectionnez votre section"}
+                                </option>
+
+                                {sections?.map((sec) => (
+                                    <option key={sec.code} value={sec.code}>
+                                        {sec.label}
+                                    </option>
+                                ))}
+                            </select>
+
+                            {/* Petite flèche pour faire joli */}
+                            <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-500">
+                                <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                    <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                                </svg>
+                            </div>
+                        </div>
+
                         <p className="mt-2 text-sm text-gray-500">
-                            Indiquez la section dans laquelle vous souhaitez demander des dispenses.
+                            Choisissez la section dans laquelle vous êtes inscrit(e).
                         </p>
                     </div>
 
                     <button
                         type="submit"
-                        disabled={isSubmitting}
+                        disabled={isSubmitting || !section}
                         className={`w-full flex justify-center items-center px-4 py-3 rounded-lg text-white font-medium transition
-              ${isSubmitting
+              ${(isSubmitting || !section)
                             ? 'bg-indigo-400 cursor-not-allowed'
                             : 'bg-indigo-600 hover:bg-indigo-700 shadow-sm'
                         }`}

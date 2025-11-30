@@ -42,6 +42,7 @@ export interface UE {
     niveau: number;
     prgm?: string;
     acquis?: Acquis[];
+    sections: Section[];
 }
 
 // --- DTOs de Lecture (Ce que le serveur envoie) ---
@@ -99,6 +100,18 @@ export interface AddDocumentDTO {
     url: string;
 }
 
+export interface Section {
+    code: string;
+    label: string;
+}
+
 export interface CreateRequestDTO {
     section: string;
+}
+
+export interface KbSchool {
+    id: number;
+    code: string;
+    etablissement: string;
+    urlProgramme?: string;
 }

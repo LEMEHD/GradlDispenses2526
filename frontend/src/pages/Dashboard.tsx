@@ -1,10 +1,11 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '../services/api';
 import { Link } from 'react-router-dom';
-import { Plus, FileText, Calendar, AlertCircle } from 'lucide-react';
+import { Plus, FileText, Calendar, AlertCircle, Trash2 } from 'lucide-react';
 import type { StatutDemande } from '../types';
+// CORRECTION : On importe le type d'erreur spécifique à Axios
+import { AxiosError } from 'axios';
 
-// Petite fonction pour afficher un joli badge selon le statut
 const getStatusBadge = (status: StatutDemande) => {
     const styles: Record<string, string> = {
         DRAFT: 'bg-gray-100 text-gray-800 border-gray-200',
@@ -28,17 +29,41 @@ const getStatusBadge = (status: StatutDemande) => {
 
     return (
         <span className={`px-3 py-1 rounded-full text-xs font-medium border ${styles[status] || styles.DRAFT}`}>
-      {labels[status] || status}
-    </span>
+            {labels[status] || status}
+        </span>
     );
 };
 
 export const Dashboard = () => {
-    // C'est ici la magie ! React Query appelle l'API et gère le chargement tout seul.
+    const queryClient = useQueryClient();
+
     const { data: requests, isLoading, isError } = useQuery({
         queryKey: ['myRequests'],
         queryFn: api.getMyRequests
     });
+
+    // Mutation pour supprimer
+    const deleteMutation = useMutation({
+        mutationFn: api.deleteRequest,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['myRequests'] });
+        },
+        // CORRECTION : Typage strict de l'erreur
+        onError: (error: AxiosError<{ error: string }>) => {
+            // On vérifie si le backend a renvoyé un message spécifique, sinon message par défaut
+            const msg = error.response?.data?.error || "Impossible de supprimer ce dossier.";
+            alert("Erreur : " + msg);
+        }
+    });
+
+    const handleDelete = (e: React.MouseEvent, id: string) => {
+        e.preventDefault(); // Empêche d'entrer dans la fiche (le Link)
+        e.stopPropagation();
+
+        if (confirm("Êtes-vous sûr de vouloir supprimer ce dossier définitivement ?")) {
+            deleteMutation.mutate(id);
+        }
+    };
 
     if (isLoading) return (
         <div className="flex justify-center p-12">
@@ -49,13 +74,12 @@ export const Dashboard = () => {
     if (isError) return (
         <div className="bg-red-50 p-4 rounded-lg flex items-center text-red-700 border border-red-200">
             <AlertCircle className="w-5 h-5 mr-2" />
-            Impossible de charger vos demandes. Vérifiez que le backend Java tourne bien sur le port 8080.
+            Impossible de charger vos demandes. Vérifiez le backend.
         </div>
     );
 
     return (
         <div className="space-y-6">
-            {/* En-tête avec bouton Créer */}
             <div className="flex justify-between items-center">
                 <div>
                     <h1 className="text-2xl font-bold text-gray-900">Mes Demandes</h1>
@@ -70,7 +94,6 @@ export const Dashboard = () => {
                 </Link>
             </div>
 
-            {/* Si aucune demande n'existe */}
             {requests?.length === 0 && (
                 <div className="text-center py-12 bg-white rounded-xl shadow-sm border border-gray-200">
                     <div className="bg-indigo-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -81,20 +104,19 @@ export const Dashboard = () => {
                 </div>
             )}
 
-            {/* Liste des demandes (Cartes) */}
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {requests?.map((req) => (
                     <Link
                         key={req.id}
                         to={`/request/${req.id}`}
-                        className="block bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:shadow-md hover:border-indigo-300 transition group"
+                        className="block bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:shadow-md hover:border-indigo-300 transition group relative"
                     >
                         <div className="flex justify-between items-start mb-4">
                             {getStatusBadge(req.statut)}
                             <span className="text-xs text-gray-400 font-mono">#{req.id.substring(0, 8)}</span>
                         </div>
 
-                        <h3 className="font-semibold text-lg text-gray-900 group-hover:text-indigo-600 transition">
+                        <h3 className="font-semibold text-lg text-gray-900 group-hover:text-indigo-600 transition pr-8">
                             Section {req.section}
                         </h3>
 
@@ -104,6 +126,30 @@ export const Dashboard = () => {
                                 day: 'numeric', month: 'long', year: 'numeric'
                             })}
                         </div>
+
+                        {/* --- BOUTON SUPPRIMER --- */}
+                        {(() => {
+                            const isDraft = req.statut === 'DRAFT';
+                            return (
+                                <button
+                                    /* Si c'est pas un brouillon, on empêche le clic (et la propagation vers le Link) */
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        if (isDraft) handleDelete(e, req.id);
+                                    }}
+                                    disabled={!isDraft}
+                                    className={`absolute bottom-4 right-4 p-2 rounded-full shadow-sm border transition-all z-10 
+                    ${isDraft
+                                        ? 'bg-white border-gray-200 text-gray-400 hover:text-red-600 hover:bg-red-50 hover:border-red-200 cursor-pointer group/delete'
+                                        : 'bg-gray-50 border-gray-100 text-gray-300 cursor-not-allowed'
+                                    }`}
+                                    title={isDraft ? "Supprimer ce dossier" : "Impossible de supprimer une demande soumise"}
+                                >
+                                    <Trash2 className={`w-5 h-5 transition-transform ${isDraft ? 'group-hover/delete:scale-110' : ''}`} />
+                                </button>
+                            );
+                        })()}
                     </Link>
                 ))}
             </div>

@@ -6,7 +6,7 @@ import type {
     AddDocumentDTO,
     UE,
     ExternalCourse,
-    SupportingDocument
+    SupportingDocument, Section, KbSchool
 } from '../types';
 
 // Configuration de base
@@ -82,6 +82,23 @@ export const api = {
 
     getOneUE: async (code: string): Promise<UE> => {
         const response = await apiClient.get<UE>(`/ue/${code}`);
+        return response.data;
+    },
+
+    // Récupérer la liste des sections
+    getSections: async (): Promise<Section[]> => {
+        const response = await apiClient.get<Section[]>('/sections');
+        return response.data;
+    },
+
+    // Supprimer une demande
+    deleteRequest: async (id: string): Promise<void> => {
+        await apiClient.delete(`/requests/${id}`);
+    },
+
+    // Récupérer la liste des écoles connues
+    getSchools: async (): Promise<KbSchool[]> => {
+        const response = await apiClient.get<KbSchool[]>('/schools');
         return response.data;
     }
 };

@@ -1,37 +1,30 @@
 import { Link } from 'react-router-dom';
-import { FileText, PlusCircle, BookOpen, User, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { FileText, PlusCircle, BookOpen, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
-// Configuration du Carrousel
+// Configuration du Carrousel avec vos images
 const SLIDES = [
     {
-        // Image école
         image: "/images/banniere_ecole.jpg",
         title: "Formation Continue",
         subtitle: "L'excellence académique au cœur de Bruxelles."
     },
     {
-        // Assistant de direction
-        image: "/images/banniere_assistant.jpg",
-        title: "Assistant de direction",
-        subtitle: "Bachelier",
-
+        image: "/images/banniere_informatique.jpg",
+        title: "Informatique, Développement d'applications",
+        subtitle: "Bachelier"
     },
     {
-        // Comptabilité
         image: "/images/banniere_compta.jpg",
         title: "Comptabilité & Gestion",
         subtitle: "Bachelier"
     },
     {
-        // Image informatique / code
-        image: "/images/banniere_informatique.jpg",
-        title: "Informatique, Développement d'applications",
-        subtitle: "Bachelier",
-
+        image: "/images/banniere_assistant.jpg",
+        title: "Assistant de Direction",
+        subtitle: "Bachelier"
     },
     {
-        // Image gestion / bureau
         image: "/images/banniere_marketing.jpg",
         title: "Marketing",
         subtitle: "Bachelier"
@@ -41,7 +34,6 @@ const SLIDES = [
 export const LandingPage = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
 
-    // Changement automatique d'image toutes les 5 secondes
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % SLIDES.length);
@@ -55,9 +47,8 @@ export const LandingPage = () => {
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col">
 
-            {/* --- CARROUSEL BANIÈRE --- */}
+            {/* --- CARROUSEL BANNIÈRE --- */}
             <div className="relative h-[500px] w-full overflow-hidden bg-gray-900">
-                {/* Images */}
                 {SLIDES.map((slide, index) => (
                     <div
                         key={index}
@@ -65,8 +56,8 @@ export const LandingPage = () => {
                             index === currentSlide ? 'opacity-100' : 'opacity-0'
                         }`}
                     >
-                        {/* Overlay sombre pour que le texte soit lisible */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-transparent z-10" />
+                        {/* Filtre sombre pour lisibilité texte */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-transparent z-10" />
                         <img
                             src={slide.image}
                             alt={slide.title}
@@ -74,10 +65,13 @@ export const LandingPage = () => {
                         />
 
                         {/* Texte sur la bannière */}
-                        <div className="absolute inset-0 z-20 flex items-center px-6 lg:px-16">
-                            <div className="max-w-3xl text-white transform transition-all duration-700 translate-y-0">
-                                <h1 className="text-5xl font-bold mb-4 drop-shadow-lg">{slide.title}</h1>
-                                <p className="text-xl text-blue-100 drop-shadow-md border-l-4 border-yellow-400 pl-4">
+                        <div className="absolute inset-0 z-20 flex items-center px-6">
+                            {/* MODIF 1 : Ajout de padding-left (pl-16) pour décaler le texte à droite de la flèche */}
+                            <div className="max-w-4xl text-white pl-12 md:pl-24">
+                                <h1 className="text-3xl md:text-5xl font-bold mb-4 drop-shadow-lg leading-tight">
+                                    {slide.title}
+                                </h1>
+                                <p className="text-lg md:text-xl text-blue-100 drop-shadow-md border-l-4 border-yellow-400 pl-4">
                                     {slide.subtitle}
                                 </p>
                             </div>
@@ -93,13 +87,13 @@ export const LandingPage = () => {
                     <ChevronRight className="w-8 h-8" />
                 </button>
 
-                {/* Indicateurs (petits points en bas) */}
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex space-x-2">
+                {/* Indicateurs (points) */}
+                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex space-x-2">
                     {SLIDES.map((_, idx) => (
                         <button
                             key={idx}
                             onClick={() => setCurrentSlide(idx)}
-                            className={`w-3 h-3 rounded-full transition-all ${
+                            className={`w-3 h-3 rounded-full transition-all shadow-sm ${
                                 idx === currentSlide ? 'bg-yellow-400 w-8' : 'bg-white/50 hover:bg-white'
                             }`}
                         />
@@ -108,11 +102,12 @@ export const LandingPage = () => {
             </div>
 
             {/* --- GRILLE DE NAVIGATION --- */}
-            {/* Layout élargi : w-full et max-w-[95%] */}
-            <div className="w-full max-w-[95%] mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-30 pb-20">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* MODIF 2 : -mt-8 au lieu de -mt-16 pour abaisser les cartes et voir les bulles */}
+            <div className="w-full max-w-[95%] mx-auto px-4 sm:px-6 lg:px-8 -mt-20 relative z-30 pb-20">
+                {/* MODIF 3 : lg:grid-cols-3 au lieu de 4, pour centrer les 3 cartes */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-                    {/* Carte : Mes Demandes */}
+                    {/* Carte 1 : Mes Demandes */}
                     <Link to="/dashboard" className="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-2 border-b-4 border-indigo-600 flex flex-col justify-between h-full group">
                         <div>
                             <div className="flex justify-between items-start mb-6">
@@ -126,7 +121,7 @@ export const LandingPage = () => {
                         </div>
                     </Link>
 
-                    {/* Carte : Nouvelle Demande */}
+                    {/* Carte 2 : Nouvelle Demande */}
                     <Link to="/new" className="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-2 border-b-4 border-green-500 flex flex-col justify-between h-full group">
                         <div>
                             <div className="flex justify-between items-start mb-6">
@@ -140,7 +135,7 @@ export const LandingPage = () => {
                         </div>
                     </Link>
 
-                    {/* Carte : Liste des UE */}
+                    {/* Carte 3 : Liste des UE */}
                     <Link to="/ues" className="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-2 border-b-4 border-blue-500 flex flex-col justify-between h-full group">
                         <div>
                             <div className="flex justify-between items-start mb-6">
@@ -151,20 +146,6 @@ export const LandingPage = () => {
                             </div>
                             <h3 className="text-xl font-bold text-gray-900 mb-2">Liste des UE</h3>
                             <p className="text-gray-500">Consulter le catalogue officiel des cours.</p>
-                        </div>
-                    </Link>
-
-                    {/* Carte : Mon Profil */}
-                    <Link to="/profile" className="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-2 border-b-4 border-orange-500 flex flex-col justify-between h-full group">
-                        <div>
-                            <div className="flex justify-between items-start mb-6">
-                                <div className="p-4 bg-orange-50 rounded-2xl group-hover:bg-orange-600 transition-colors duration-300">
-                                    <User className="w-8 h-8 text-orange-600 group-hover:text-white transition-colors" />
-                                </div>
-                                <ArrowRight className="w-6 h-6 text-gray-300 group-hover:text-orange-500 transition" />
-                            </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">Mon Profil</h3>
-                            <p className="text-gray-500">Gérer vos informations personnelles.</p>
                         </div>
                     </Link>
 
