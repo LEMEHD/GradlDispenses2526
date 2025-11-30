@@ -1,0 +1,425 @@
+[
+  {
+    "code": "ILANG2",
+    "ref": "73XX92U32D2",
+    "nom": "LANGUE EN SITUATION APPLIQUEE A L’ENSEIGNEMENT SUPERIEUR - UE 2",
+    "ects": 7,
+    "nbPeriodes": 80,
+    "niveau": 1,
+    "prgm": "- Comprendre des messages oraux\n    • Comprendre des messages écrits\n    • Prendre part à une conversation\n    • S’exprimer oralement en continu\n    • S’exprimer par écrit\n    • Comprendre des messages oraux et audio simples utilisés dans des situations courantes de la vie entreprise\n    • Comprendre des messages simples utilisés des situations courantes de la vie professionnelle liées au domaine considéré (économique, informatique, technique, scientifique, artistique, etc.)\n    • Comprendre et suivre des indications et/ou des directives\n    • Extraire l’information essentielle de courts passages audio variés\n    • Inférer le sens de mots inconnus à partir du contexte\n    • Comprendre des messages écrits simples relatifs à des situations courantes passées, présentes et/ou futures de la vie en entreprise\n    • Comprendre des messages simples utilisés dans des situations courantes de la vie professionnelle liées au domaine considéré (économique, informatique, technique, scientifique, artistique, etc.)\n    • Trouver des renseignements spécifiques dans des documents courants d'ordre socioprofessionnel\n    • Utiliser le sens général d’un texte pour inférer la signification de mots inconnus\n    • Intervenir dans des échanges sociaux, en utilisant les formules de politesse\n    • Donner et suivre des directives et des instructions simples\n    • Répondre à des questions et en poser, réagir à des affirmations et en émettre\n    • Échanger des idées et des informations sur des activités passées, présentes et/ou futures de la vie socioprofessionnelle\n    • Faire des suggestions et réagir à des propositions\n    • Faire et accepter une offre, une invitation ou des excuses\n    • Exprimer son accord ou son désaccord\n    • Comprendre et utiliser des expressions permettant de répondre aux besoins de la vie sociale et professionnelle\n    • Décoder et adopter un langage non verbal adapté à la situation de communication\n    • Indiquer qu’il suit ou ne suit pas ce qui se dit et demander de répéter en cas d’incompréhension\n    • Recourir à des stratégies permettant de compenser les lacunes linguistiques\n    • Présenter brièvement sa formation, son travail, ses collègues ou des activités quotidiennes passées, présentes et/ou futures\n    • Produire des messages cohérents en utilisant des connecteurs élémentaires\n    • Produire des messages simples en utilisant des termes et expressions nécessaires aux échanges sociaux et professionnels\n    • Rédiger une lettre personnelle simple\n    • Recourir à des stratégies de communication qui permettent de compenser les lacunes linguistiques\n    • Thèmes généraux : données personnelles, voyages et circulation, nourriture et boissons, santé, perception et activité sensorimotrice, relations personnelles et contacts avec autrui, enseignement et formation, langues, relations sociales\n    • Vie en entreprise : profession, fonction, lieu de travail, conditions de travail, rémunérations, formation professionnelle, contacts téléphoniques, courriers professionnels, organisation du travail, sécurité, activités professionnelles\n    • Thèmes spécifiques : domaine informatique, domaine économique, assurances, marketing, commerce extérieur, budget finances, logistique, relations publiques, tourisme, gestion ressources humaines, droit, coopération internationale, transports et logistiques, domaines scientifique et technique, domaine artistique",
+    "acquis": [
+      { "description": "Du degré de pertinence de la production", "pourcentage": 1 },
+      { "description": "Degré de pertinence de la production", "pourcentage": 1 },
+      { "description": "Degré de compréhension et étendue du vocabulaire", "pourcentage": 1 },
+      { "description": "Correction morphosyntaxique et orthographique", "pourcentage": 1 },
+      { "description": "Degré de fluidité et clarté de la prononciation", "pourcentage": 1 }
+    ]
+  },
+  {
+    "code": "IPAP",
+    "ref": "7521 05 U32 D3",
+    "nom": "PRINCIPES ALGORITHMIQUES ET PROGRAMMATION",
+    "ects": 8,
+    "nbPeriodes": 120,
+    "niveau": 1,
+    "prgm": "- Identifier différents langages de programmation existants\n- Mettre en œuvre une méthodologie de résolution de problème (observation, résolution, expérimentation, validation) et la justifier en fonction de l’objectif poursuivi\n- Concevoir, construire et représenter des algorithmes en utilisant :\n    • Les types de données élémentaires\n    • Les figures algorithmiques de base (séquence, alternative, répétitive)\n    • Les instructions\n    • Les portées des variables\n    • Les fonctions et procédures\n    • La récursivité\n    • Les entrées/sorties\n    • Les fichiers\n    • Les structures de données de base (tableaux et enregistrements)\n- Traduire adéquatement des algorithmes en respectant les spécificités du langage utilisé (JAVA, PYTHON)\n- Documenter de manière complète et précise les programmes développés\n- Produire des tests pour valider les programmes développés",
+    "acquis": [
+      { "description": "Mettre en oeuvre une représentation algorithmique du problème posé", "pourcentage": 30 },
+      { "description": "Développer au moins un programme en respectant les spécificités du langage choisi", "pourcentage": 30 },
+      { "description": "Mettre en oeuvre des procédures de test", "pourcentage": 20 },
+      { "description": "Justifier la démarche mise en oeuvre dans l’élaboration du (ou des) programme(s)", "pourcentage": 20 }
+    ]
+  },
+  {
+    "code": "IIBD",
+    "ref": "2982 21 U31 D1",
+    "nom": "INITIATION AUX BASES DE DONNEES",
+    "ects": 5,
+    "nbPeriodes": 60,
+    "niveau": 1,
+    "prgm": "- Définir une base de données et présenter les éléments essentiels d'un SGBD\n- Créer une table et un index en utilisant différents types de données\n- Expliciter les mécanismes relationnels et le schéma relationnel\n- Utiliser une clé primaire, les vues et les tables à jonctions (jointure)\n- Utiliser les éléments essentiels d'un langage tel que SQL pour créer des tables\n- Effectuer des sélections (tri, élimination doublons, création champs, jointure, regroupement)\n- Appliquer les opérations ensemblistes en SQL\n- Importer et exporter des données",
+    "acquis": [
+      { "description": "Utilisation pertinente de toutes les techniques présentées dans le programme", "pourcentage": 1 },
+      { "description": "Degré d'autonomie atteint", "pourcentage": 1 }
+    ]
+  },
+  {
+    "code": "IGEB",
+    "ref": "7544 21 U32 D4",
+    "nom": "GESTION ET EXPLOITATION DE BASES DE DONNEES",
+    "ects": 5,
+    "nbPeriodes": 60,
+    "niveau": 1,
+    "prgm": "- Programmer des déclencheurs (triggers) de vérification des données\n- Programmer des déclencheurs d'action après mise à jour\n- Programmer des procédures stockées (requêtes, mises à jour, suppression) en SQL\n- Analyser les gains de performance liés aux procédures stockées\n- Concevoir une structure multidimensionnelle (Data Warehouse)\n- Citer les notions et outils liés à la sécurité (droits d'accès, injection, firewall, hachage, chiffrement)",
+    "acquis": [
+      { "description": "Niveau de cohérence : capacité à établir des liens logiques", "pourcentage": 1 },
+      { "description": "Niveau de précision : clarté, concision, rigueur terminologique", "pourcentage": 1 },
+      { "description": "Niveau d'intégration : appropriation des concepts et techniques", "pourcentage": 1 },
+      { "description": "Niveau d'autonomie : initiatives et réflexion personnelle", "pourcentage": 1 }
+    ]
+  },
+  {
+    "code": "ISO",
+    "ref": "7551 01 U32 D4",
+    "nom": "STRUCTURE DES ORDINATEURS",
+    "ects": 5,
+    "nbPeriodes": 60,
+    "niveau": 1,
+    "prgm": "- Représenter l'information de manière numérique (binaire, hexadécimal, conversion)\n- Identifier l'architecture matérielle et logicielle\n- Expliciter le fonctionnement du processeur (ALU, pipeline, bus)\n- Différencier les types de mémoires (cache, centrale, masse)\n- Comprendre les interfaces et bus (adresse, données, contrôle)\n- Gérer les périphériques courants et les liaisons réseaux\n- Appréhender les éléments clés de la sécurité système",
+    "acquis": [
+      { "description": "Degré de pertinence du choix technique", "pourcentage": 1 },
+      { "description": "Niveau de clarté et de précision dans le vocabulaire technique", "pourcentage": 1 },
+      { "description": "Degré de pertinence de la justification", "pourcentage": 1 }
+    ]
+  },
+  {
+    "code": "ISE",
+    "ref": "7552 03 U32 D4",
+    "nom": "INFORMATIQUE - SYSTEME D'EXPLOITATION",
+    "ects": 8,
+    "nbPeriodes": 100,
+    "niveau": 1,
+    "prgm": "- Installer et configurer un système d'exploitation\n- Configurer la sécurité (droits d'accès, verrouillage, hardening)\n- Assurer la maintenance curative et préventive\n- Gérer les partitions, le système de fichiers, la mémoire et les processus\n- Programmer des procédures en langage de commande (scripts, variables, boucles)\n- Utiliser les notions de virtualisation, Cloud Computing et réplication\n- Documenter l'installation et le suivi",
+    "acquis": [
+      { "description": "Rigueur et respect des spécificités du système", "pourcentage": 1 },
+      { "description": "Adéquation de la solution", "pourcentage": 1 },
+      { "description": "Respect du temps alloué", "pourcentage": 1 },
+      { "description": "Clarté et précision du vocabulaire technique", "pourcentage": 1 }
+    ]
+  },
+  {
+    "code": "IMA",
+    "ref": "0121 02 U32 D4",
+    "nom": "MATHEMATIQUES APPLIQUEES A L'INFORMATIQUE",
+    "ects": 5,
+    "nbPeriodes": 60,
+    "niveau": 1,
+    "prgm": "- Algèbre linéaire : calcul matriciel, opérations sur vecteurs et matrices\n- Calcul itératif\n- Étude des graphes : chemins, circuits, arbres, ordonnancement\n- Théorie des ensembles : opérations, relations, SQL théorique\n- Algèbre relationnelle (tables, relations)\n- Logique mathématique : tables de vérité, lois de Morgan\n- Notions de sécurité de l'information : cryptographie, RSA, AES, certificats",
+    "acquis": [
+      { "description": "Degré d'autonomie et d'autoformation", "pourcentage": 1 },
+      { "description": "Degré de précision du vocabulaire technique utilisé", "pourcentage": 1 }
+    ]
+  },
+  {
+    "code": "IAI",
+    "ref": "2982 22 U 31 D2",
+    "nom": "ANALYSE INFORMATIQUE",
+    "ects": 4,
+    "nbPeriodes": 60,
+    "niveau": 1,
+    "prgm": "- S'approprier les concepts méthodologiques de gestion de projet (informationnel, fonctionnel, temporel)\n- Définir un système d'information (coûts, délais, qualité)\n- Choisir et construire des modèles standards (UML, Entité-Relation)\n- Identifier les étapes du cycle de vie (analyse, conception, dev, tests)\n- Comprendre un métier spécifique pour l'analyse\n- Élaborer des spécifications adaptées\n- Réaliser des études de cas en groupe",
+    "acquis": [
+      { "description": "Niveau de cohérence", "pourcentage": 1 },
+      { "description": "Niveau de précision", "pourcentage": 1 },
+      { "description": "Niveau d'intégration", "pourcentage": 1 },
+      { "description": "Niveau d'autonomie", "pourcentage": 1 }
+    ]
+  },
+  {
+    "code": "ITG",
+    "ref": "7502 05 U32 D2",
+    "nom": "TECHNIQUES DE GESTION DE PROJET",
+    "ects": 3,
+    "nbPeriodes": 40,
+    "niveau": 1,
+    "prgm": "- Appréhender le concept de projet et sa structure (acteurs, RH, comm)\n- Caractériser le cycle de vie et les spécificités informatiques\n- Appliquer les modèles (V, Spirale, Agile/Scrum, RUP)\n- Estimer un projet : durée, planification, coûts directs/indirects\n- Utiliser les techniques de supervision (plan qualité, analyse risques)\n- Réaliser un rapport argumenté sur les phases du projet",
+    "acquis": [
+      { "description": "Niveau de cohérence", "pourcentage": 1 },
+      { "description": "Niveau de précision", "pourcentage": 1 },
+      { "description": "Niveau d'intégration", "pourcentage": 1 },
+      { "description": "Niveau d'autonomie", "pourcentage": 1 }
+    ]
+  },
+  {
+    "code": "XSTA",
+    "ref": "013203U32D2",
+    "nom": "ELEMENTS DE STATISTIQUE",
+    "ects": 3,
+    "nbPeriodes": 40,
+    "niveau": 1,
+    "prgm": "- Statistique descriptive univariée : tableaux, graphiques, mesures de position/dispersion\n- Statistique descriptive bivariée : nuage de points, droite de régression, corrélation\n- Probabilités : calculs simples, lois usuelles (Binomiale, Poisson, Normale)\n- Utilisation de logiciels (tableur) pour le traitement statistique",
+    "acquis": [
+      { "description": "Degré de pertinence de la démarche développée", "pourcentage": 1 },
+      { "description": "Clarté et précision dans l'utilisation du vocabulaire statistique", "pourcentage": 1 },
+      { "description": "Degré d'autonomie atteint", "pourcentage": 1 }
+    ]
+  },
+  {
+    "code": "XICP",
+    "ref": "03 50 22 U 32 D2",
+    "nom": "INFORMATION ET COMMUNICATION PROFESSIONNELLES",
+    "ects": 3,
+    "nbPeriodes": 40,
+    "niveau": 1,
+    "prgm": "- Prendre des notes selon techniques appropriées\n- Mettre en œuvre le traitement de l'information (argumentation, objectivité)\n- Restructurer et reformuler le message pour l'adapter au destinataire\n- Produire des rapports, synthèses, et communications internes/externes\n- Utiliser l'outil de communication approprié",
+    "acquis": [
+      { "description": "Degré de précision et de clarté de l'expression", "pourcentage": 1 },
+      { "description": "Niveau de respect du sens des informations traitées", "pourcentage": 1 }
+    ]
+  },
+  {
+    "code": "IWPB",
+    "ref": "7534 29 U32 D1",
+    "nom": "WEB: PRINCIPES DE BASE",
+    "ects": 3,
+    "nbPeriodes": 40,
+    "niveau": 1,
+    "prgm": "- Utiliser, installer et configurer des navigateurs différents et utiliser les principaux services du Web\n- Effectuer des recherches pertinentes, acquérir la terminologie de base (URL, domaines) et identifier les méthodes de piratage\n- Créer et structurer une page web (X)HTML (balises de structure, texte, multimédia, formulaires, hyperliens) en respectant la sémantique\n- Créer et structurer une feuille de style CSS (sélecteurs, propriétés) et réaliser la liaison avec les pages web\n- Réaliser des mises en page et des menus à l'aide de feuilles de style\n- Vérifier la compatibilité (navigateurs, smartphones, tablettes)\n- Transférer et mettre à jour les fichiers sur un serveur",
+    "acquis": [
+      { "description": "Réaliser des pages statiques, compatibles avec au minimum un navigateur récent du marché", "pourcentage": 1 },
+      { "description": "Transférer et tester ces pages statiques sur un serveur", "pourcentage": 1 },
+      { "description": "Utilisation pertinente des technologies appropriées", "pourcentage": 1 },
+      { "description": "Rigueur et respect des spécificités du langage", "pourcentage": 1 },
+      { "description": "Niveau de fiabilité des tests", "pourcentage": 1 }
+    ]
+  },
+  {
+    "code": "INEB",
+    "ref": "7145 06 U32 D1",
+    "nom": "NOTIONS DE E-BUSINESS",
+    "ects": 7,
+    "nbPeriodes": 80,
+    "niveau": 2,
+    "prgm": "- Appréhender les concepts de base, les fondements et l'environnement de l'e-business\n- Analyser les potentialités (création de valeur)\n- Analyser les modèles B2C (nature, transactions, marketing) et B2B (échange d'infos, XML, logistique)\n- Comprendre les plateformes d'intermédiation\n- Élaborer un business plan (contexte, motivations, logistique, investissements, cahier des charges)\n- Droit TIC : propriété intellectuelle, droit d'auteur, protection des données, contrats électroniques, cloud computing",
+    "acquis": [
+      { "description": "Élaborer le business plan en justifiant ses choix", "pourcentage": 1 },
+      { "description": "Analyser et abstraire une situation juridique liée aux TIC", "pourcentage": 1 },
+      { "description": "Déterminer les responsabilités juridiques", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Pertinence des techniques appliquées", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Qualité de l'argumentation", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Précision et clarté des termes techniques", "pourcentage": 1 }
+    ]
+  },
+  {
+    "code": "IPB2",
+    "ref": "7544 03 U32 D2",
+    "nom": "PROJET DE DEVELOPPEMENT SGBD",
+    "ects": 8,
+    "nbPeriodes": 80,
+    "niveau": 2,
+    "prgm": "- Se connecter sur une base de données par programmation et gérer les données (CRUD)\n- Vérifier l'intégrité et gérer les erreurs\n- Implémenter une interface visuelle de gestion\n- Programmer des transactions et découper en couches (DAL, BO, Business Layer)\n- Débugger la programmation et assurer la qualité des données\n- Identifier et mettre en œuvre une solution cloud\n- Intégrer les solutions DevOps (Git, Intégration/Déploiement continus)",
+    "acquis": [
+      { "description": "Élaborer et défendre un dossier technique (schéma, contraintes, code)", "pourcentage": 1 },
+      { "description": "Implémenter une base de données et l'intégrité des données", "pourcentage": 1 },
+      { "description": "Programmer, tester et défendre l'interface visuelle", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau de cohérence", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau de précision", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau d'intégration", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau d'autonomie", "pourcentage": 1 }
+    ]
+  },
+  {
+    "code": "IPC2",
+    "ref": "7512 11 U32 D2",
+    "nom": "PROJET D'ANALYSE ET DE CONCEPTION",
+    "ects": 10,
+    "nbPeriodes": 100,
+    "niveau": 2,
+    "prgm": "- Préciser les spécifications et établir un cahier des charges\n- Mettre en œuvre une méthodologie de résolution de problème\n- Recueillir les informations nécessaires (structure, contraintes) avec les parties prenantes\n- Modéliser et valider les scénarios de solution (diagrammes standardisés, tables de décision)\n- Traduire en architecture logicielle (Cloud, SaaS) et élaborer des scénarios de tests\n- Constituer la documentation adéquate\n- Planifier et contrôler l'état d'avancement du projet",
+    "acquis": [
+      { "description": "Structurer et modéliser les besoins du client", "pourcentage": 1 },
+      { "description": "Construire et modéliser un scénario de solution", "pourcentage": 1 },
+      { "description": "Traduire en architecture logicielle la solution proposée", "pourcentage": 1 },
+      { "description": "Justifier le suivi du projet", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau de cohérence", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau de précision", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau d'intégration", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau d'autonomie", "pourcentage": 1 }
+    ]
+  },
+  {
+    "code": "IBR2",
+    "ref": "2983 10 U31 D2",
+    "nom": "BASES DES RESEAUX",
+    "ects": 6,
+    "nbPeriodes": 80,
+    "niveau": 2,
+    "prgm": "- Décrire et utiliser les réseaux (OSI, Internet, TCP/IP, topologies)\n- Maîtriser le binaire, hexa, adresses IPv4 et masques\n- Réaliser et caractériser le câblage (bande passante, connecteurs)\n- Caractériser la technologie Ethernet (MAC, Trames, Collision, Switching)\n- Utiliser des outils d'analyse de trafic (sniffers, traceroute)\n- Protocole TCP/IP : adressage, routage, DHCP, notions IPv6\n- Couches transport (TCP/UDP) et application (DNS, FTP, HTTP, SMTP)",
+    "acquis": [
+      { "description": "Décrire les principales notions (câblage, IP, TCP/IP)", "pourcentage": 1 },
+      { "description": "Décrire le fonctionnement d'un commutateur et d'un routeur", "pourcentage": 1 },
+      { "description": "Établir un plan d'adressage IPv4 simple", "pourcentage": 1 },
+      { "description": "Remédier à un dysfonctionnement simple", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau de cohérence", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau de précision", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau d'intégration", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau d'autonomie", "pourcentage": 1 }
+    ]
+  },
+  {
+    "code": "IPO3",
+    "ref": "7525 21 U32 D3",
+    "nom": "PROGRAMMATION ORIENTEE OBJET",
+    "ects": 9,
+    "nbPeriodes": 120,
+    "niveau": 2,
+    "prgm": "- Concevoir, identifier et modéliser des objets et leurs relations\n- Utiliser les structures de données dynamiques, classes et méthodes\n- Appliquer l'héritage, le polymorphisme, la surcharge et l'encapsulation\n- Utiliser les fonctions amies et la programmation événementielle\n- Développer une application structurée globalement\n- Mettre en œuvre des standards professionnels (documentation, dictionnaires, bibliothèques)\n- Concevoir et implémenter des procédures de tests",
+    "acquis": [
+      { "description": "Concevoir, installer et utiliser des objets appropriés", "pourcentage": 1 },
+      { "description": "Concevoir et mettre en œuvre une procédure de test", "pourcentage": 1 },
+      { "description": "Justifier la méthode de résolution et les choix conceptuels", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau de cohérence", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau de précision", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau d'intégration", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau d'autonomie", "pourcentage": 1 }
+    ]
+  },
+  {
+    "code": "IPLG",
+    "ref": "7111 06 U32 D3",
+    "nom": "PRODUITS LOGICIELS DE GESTION INTEGRES",
+    "ects": 9,
+    "nbPeriodes": 100,
+    "niveau": 2,
+    "prgm": "- Comptabilité : organisation du système d'information, documents commerciaux, partie double, comptes annuels, liens compta générale/analytique\n- Logiciels de gestion (ERP/CRM) : analyse des fonctionnalités, flux virtuels, reporting\n- Mettre en œuvre des procédures de gestion (approvisionnement, stocks, clients, fournisseurs)\n- Réaliser des travaux pratiques comptables sur logiciel",
+    "acquis": [
+      { "description": "Appliquer des procédures de gestion liées aux logiciels intégrés", "pourcentage": 1 },
+      { "description": "Réaliser des travaux simples en matière comptable et de gestion", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau de cohérence", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau de précision", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau d'intégration", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau d'autonomie", "pourcentage": 1 }
+    ]
+  },
+  {
+    "code": "IPW3",
+    "ref": "7534 30 U32 D3",
+    "nom": "PROJET DE DEVELOPPEMENT WEB",
+    "ects": 10,
+    "nbPeriodes": 100,
+    "niveau": 2,
+    "prgm": "- Programmation Client : scripts, DOM, événements, classes, validation, AJAX/JSON, bibliothèques tierces, API\n- Programmation Serveur : variables, sessions, cookies, MVC, transfert de données (GET/POST), sécurité (OWASP, injection)\n- Gestion de fichiers serveur\n- Intégration Cloud et solutions DevOps (Git, CI/CD)\n- Débogage et sécurisation des développements",
+    "acquis": [
+      { "description": "Créer et exploiter des scripts clients (classes propres ou prédéfinies)", "pourcentage": 1 },
+      { "description": "Envoyer et traiter des informations client/serveur", "pourcentage": 1 },
+      { "description": "Générer des pages dynamiques avec navigation et formulaires", "pourcentage": 1 },
+      { "description": "Implémenter et sécuriser une API", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau de cohérence", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau de précision", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau d'intégration", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau d'autonomie", "pourcentage": 1 }
+    ]
+  },
+  {
+    "code": "IEI",
+    "ref": "7500 06 U32 D1",
+    "nom": "EPREUVE INTEGREE DE LA SECTION : BACHELIER EN INFORMATIQUE, ORIENTATION DEVELOPPEMENT D'APPLICATIONS",
+    "ects": 20,
+    "nbPeriodes": 20,
+    "niveau": 3,
+    "prgm": "- Mettre en œuvre une recherche personnelle traduite dans un rapport écrit circonstancié et critique\n- Utiliser et exploiter des méthodes standardisées de modélisation\n- Mettre en œuvre des solutions dans les différents environnements de programmation\n- Assurer les tests, la sécurité et l'évolution éventuelle de la solution\n- Assurer l'assistance structurée aux utilisateurs et élaborer la documentation technique\n- Estimer financièrement l'impact du projet\n- Préparer et présenter la défense orale (maîtrise technique, éthique, confrontation avec la réalité professionnelle)",
+    "acquis": [
+      { "description": "Mettre en œuvre une recherche cohérente sur un sujet validé", "pourcentage": 1 },
+      { "description": "Rédiger un rapport circonstancié et critique (analyse, implémentation, réflexion)", "pourcentage": 1 },
+      { "description": "Estimer financièrement le projet présenté", "pourcentage": 1 },
+      { "description": "Défendre oralement son rapport avec des techniques de communication adéquates", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau de cohérence", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau de précision", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau d'intégration", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau d'autonomie", "pourcentage": 1 }
+    ]
+  },
+  {
+    "code": "XORG",
+    "ref": "7182 11 U32 D2",
+    "nom": "ORGANISATION DES ENTREPRISES ET ELEMENTS DE MANAGEMENT",
+    "ects": 4,
+    "nbPeriodes": 40,
+    "niveau": 3,
+    "prgm": "- Caractériser le rôle, les types et l'environnement de l'entreprise\n- Comprendre la culture et le projet d'entreprise\n- Mettre en évidence les structures de pouvoir, d'information et de décision\n- Analyser les méthodes de gestion (Marketing, Production, Logistique, RH, Qualité)\n- Appréhender la logique des choix financiers\n- Appliquer les concepts à un cas pratique de prise de décision",
+    "acquis": [
+      { "description": "Analyser les structures, le mode d'organisation et les aspects de gestion", "pourcentage": 1 },
+      { "description": "Présenter un rapport circonstancié (type d'entreprise, structures, méthodes)", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau de pertinence de l'analyse", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau de clarté et de précision du vocabulaire économique", "pourcentage": 1 }
+    ]
+  },
+  {
+    "code": "IPID",
+    "ref": "7534 35 U32 D2",
+    "nom": "PROJET D'INTEGRATION DE DEVELOPPEMENT",
+    "ects": 9,
+    "nbPeriodes": 100,
+    "niveau": 3,
+    "prgm": "- Exploiter un framework backend et frontend (ex: React Native)\n- Produire le cahier des charges et le dossier technique\n- Identifier les acteurs et leurs rôles\n- Mettre en œuvre le projet : contenus dynamiques, pagination, services tiers, filtres, sécurité/droits d'accès, affichage différencié, programmation asynchrone (AJAX)\n- Optimiser le code et les échanges BDD\n- Sécuriser le site (injections SQL, XSS, URL rewriting)\n- Gérer les erreurs et le débogage",
+    "acquis": [
+      { "description": "Produire et défendre un cahier des charges et son dossier technique", "pourcentage": 1 },
+      { "description": "Implémenter une base de données et l'intégrité des données", "pourcentage": 1 },
+      { "description": "Déployer et justifier le site répondant aux consignes", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau de cohérence", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau de précision", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau d'intégration", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau d'autonomie", "pourcentage": 1 }
+    ]
+  },
+  {
+    "code": "ISP",
+    "ref": "7500 07 U32 D1",
+    "nom": "STAGE D'INTEGRATION PROFESSIONNELLE",
+    "ects": 5,
+    "nbPeriodes": 20,
+    "niveau": 3,
+    "prgm": "- Présenter et justifier un projet de stage lié au profil professionnel\n- S'intégrer dans une équipe et utiliser le matériel avec respect\n- Faire preuve d'initiative, esprit critique, sociabilité et organisation (carnet de stage)\n- Rédiger un rapport liant formation et expérience\n- Respecter la confidentialité et les termes du contrat",
+    "acquis": [
+      { "description": "Élaborer, rédiger et défendre un rapport d'analyse cohérent", "pourcentage": 1 },
+      { "description": "Mettre en évidence des compétences techniques et méthodologiques mobilisées", "pourcentage": 1 },
+      { "description": "Formuler des commentaires personnels liant formation et compétences", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau d'organisation et de dextérité", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau de cohérence", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau de précision", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau d'intégration", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau d'autonomie", "pourcentage": 1 }
+    ]
+  },
+  {
+    "code": "IAP",
+    "ref": "7500 08 U32 D1",
+    "nom": "ACTIVITES PROFESSIONNELLES DE FORMATION",
+    "ects": 12,
+    "nbPeriodes": 40,
+    "niveau": 3,
+    "prgm": "- Respecter le règlement, la sécurité et la confidentialité de l'entreprise\n- S'intégrer, communiquer et collaborer en équipe\n- Rédiger un rapport d'activités et proposer une structure pour l'épreuve intégrée\n- Mettre en œuvre des compétences techniques : développement d'applications, algorithmes, standards, modélisation, bases de données, maintenance, sécurisation, validation, analyse systémique\n- Estimer les coûts et documenter les écarts",
+    "acquis": [
+      { "description": "Participer activement aux travaux de développement (autonomie/auto-évaluation)", "pourcentage": 1 },
+      { "description": "Rédiger, présenter et défendre un rapport d'activités (contexte, travaux, problèmes)", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau d'organisation et de dextérité", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau de cohérence", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau de précision", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau d'intégration", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau d'autonomie", "pourcentage": 1 }
+    ]
+  },
+  {
+    "code": "IAS",
+    "ref": "7532 47 U32 D4",
+    "nom": "ADMINISTRATION, GESTION ET SECURISATION DES RESEAUX ET SERVICES",
+    "ects": 8,
+    "nbPeriodes": 100,
+    "niveau": 3,
+    "prgm": "- Décrire les réseaux sans fil, solutions multi-tiers et le 'store and forward'\n- Configurer piles protocoles, applications de gestion (DHCP, DNS), antivirus centralisés\n- Gérer la virtualisation, les sauvegardes et l'interconnexion de sites distants\n- Installer des services Internet (mail, web, serveur applicatif)\n- Sécuriser : protocoles (SSL, TLS, SSH), Firewall, IDS, VPN, Authentification (AD, LDAP, Kerberos)\n- Mettre en œuvre partage de fichiers, VLAN, GPO et accès distant",
+    "acquis": [
+      { "description": "Mettre en œuvre l'installation et la configuration d'un service", "pourcentage": 1 },
+      { "description": "Configurer le service (fonctionnalités et sécurité)", "pourcentage": 1 },
+      { "description": "Identifier l'origine d'un problème et y apporter une solution", "pourcentage": 1 },
+      { "description": "Identifier et solutionner les failles de sécurité", "pourcentage": 1 },
+      { "description": "Mettre en place une stratégie de sécurité cohérente", "pourcentage": 1 },
+      { "description": "Mettre en place un service hébergé dans le Cloud", "pourcentage": 1 }
+    ]
+  },
+  {
+    "code": "IVTE",
+    "ref": "7534 14 U32 D1",
+    "nom": "VEILLE TECHNOLOGIQUE",
+    "ects": 4,
+    "nbPeriodes": 40,
+    "niveau": 3,
+    "prgm": "- Identifier les outils et méthodologies de la veille technologique\n- Mettre en œuvre les principes-clés et définir les étapes du processus\n- Mettre en place une cellule de veille\n- Résoudre des cas et rédiger un rapport (critiques, solutions alternatives, améliorations)",
+    "acquis": [
+      { "description": "Présenter un rapport circonstancié basé sur une étude de cas", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Degrés d'autonomie et d'autoformation", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau de pertinence des critiques", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Niveau de clarté de la présentation", "pourcentage": 1 },
+      { "description": "Critère de maîtrise : Précision du vocabulaire de la veille", "pourcentage": 1 }
+    ]
+  }
+]

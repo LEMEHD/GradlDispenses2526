@@ -17,6 +17,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import jakarta.validation.constraints.Max;
 
 @Data // Génère Getter, Setter, etc.
 @NoArgsConstructor
@@ -37,7 +38,7 @@ public class UE extends BaseEntity { // <--- On étend BaseEntity
     private String ref; // 7521 05 U32 D3
 
     @NotBlank(message = "{err.ue.nom.vide}")
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 100)
     private String nom; // PRINCIPES ALGORITHMIQUES...
 
     @Min(value = 1, message = "{err.cours.nbPeriodes}")
@@ -47,6 +48,10 @@ public class UE extends BaseEntity { // <--- On étend BaseEntity
     @Min(value = 1, message = "{err.ue.ects.min}")
     @Column(nullable = false)
     private int ects; // 8
+    
+    @Min(1) @Max(3)
+    @Column(nullable = false)
+    private int niveau; // 1, 2 ou 3
 
     @Lob
     private String prgm; // Bloc de texte

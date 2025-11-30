@@ -1,12 +1,19 @@
 package org.isfce.pid.GradleDispenses2526.seed;
 
 import org.isfce.pid.GradleDispenses2526.dao.*;
+import org.isfce.pid.GradleDispenses2526.dto.AcquisSeedDTO;
+import org.isfce.pid.GradleDispenses2526.dto.UeSeedDTO;
 import org.isfce.pid.GradleDispenses2526.model.*;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.Transactional;
+import com.fasterxml.jackson.core.type.TypeReference; // <--- Import Jackson
+import com.fasterxml.jackson.databind.ObjectMapper;   // <--- Import Jackson
+import org.springframework.core.io.ClassPathResource; // <--- Pour lire le fichier
 
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
@@ -17,12 +24,14 @@ public class SeedData {
     private final IKbSchoolDao schoolDao;
     private final IKbCourseDao courseDao;
     private final IKbCorrespondenceRuleDao ruleDao;
+    private final ObjectMapper mapper; // <--- On ajoute le mapper JSON
 
-    public SeedData(IUeDao ueDao, IKbSchoolDao schoolDao, IKbCourseDao courseDao, IKbCorrespondenceRuleDao ruleDao) {
+    public SeedData(IUeDao ueDao, IKbSchoolDao schoolDao, IKbCourseDao courseDao, IKbCorrespondenceRuleDao ruleDao, ObjectMapper mapper) {
         this.ueDao = ueDao;
         this.schoolDao = schoolDao;
         this.courseDao = courseDao;
         this.ruleDao = ruleDao;
+        this.mapper = mapper;
     }
 
     @Bean
@@ -42,26 +51,72 @@ public class SeedData {
         };
     }
 
-    @Transactional // Important pour gérer les relations proprement
+    @Transactional
     public void seedUEs() {
-        // UE Complexe (IPAP)
-        if (!ueDao.existsByCode("IPAP")) {
-            createIPAP();
+        try {
+            // On cherche le fichier dans src/main/resources/data/ues.json
+            ClassPathResource resource = new ClassPathResource("data/ues.json");
+            
+            if (!resource.exists()) {
+                System.out.println("⚠️ Fichier ues.json introuvable. Créez-le dans src/main/resources/data/");
+                return;
+            }
+
+            // On lit le fichier et on le transforme en liste d'objets Java
+            InputStream inputStream = resource.getInputStream();
+            List<UeSeedDTO> uesFromFile = mapper.readValue(inputStream, new TypeReference<List<UeSeedDTO>>(){});
+
+            // Pour chaque UE du fichier, on l'insère en base de données
+            for (UeSeedDTO dto : uesFromFile) {
+                // Conversion des petits DTO Acquis vers le modèle Acquis complet
+                List<Acquis> acquisModel = new ArrayList<>();
+                if (dto.acquis() != null) {
+                    for (AcquisSeedDTO a : dto.acquis()) {
+                        acquisModel.add(new Acquis(a.description(), a.pourcentage()));
+                    }
+                }
+
+                // Appel de la méthode générique
+                createFullUE(
+                    dto.code(),
+                    dto.ref(),
+                    dto.nom(),
+                    dto.nbPeriodes(),
+                    dto.ects(),
+                    dto.niveau(),
+                    dto.prgm(),
+                    acquisModel
+                );
+            }
+            System.out.println("✅ " + uesFromFile.size() + " UEs chargées depuis ues.json");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("❌ Erreur critique lors du chargement des UE : " + e.getMessage());
         }
-        // UEs Administratives (Liste du PDF)
-        createUeIfMissing("IPID", "Projet d'intégration de développement", 8, 120);
-        createUeIfMissing("POO",  "Programmation Orientée Objet", 6, 80);
-        createUeIfMissing("IIBD", "Initiation aux Bases de Données", 5, 60);
-        createUeIfMissing("ISE2", "Systèmes d'exploitation", 5, 60);
-        createUeIfMissing("IPAI", "Analyse Informatique", 5, 60);
-        createUeIfMissing("XORG", "Organisation des entreprises", 5, 60);
-        createUeIfMissing("ISO2", "Structure des ordinateurs", 3, 40);
-        createUeIfMissing("IMA2", "Mathématiques appliquées", 4, 40);
-        createUeIfMissing("IWPB", "Web : Principes de base", 6, 80);
-        createUeIfMissing("IPO2", "Projet orienté objet", 3, 40); 
-        createUeIfMissing("IBR2", "Bases des réseaux", 5, 60);
-        createUeIfMissing("MATH", "Mathématiques générales", 4, 40); // Cible pour l'exemple complexe
-        createUeIfMissing("RESO", "Réseaux et communication", 4, 40); // Cible pour l'exemple complexe
+    }
+
+    // --- Méthode Générique pour insérer n'importe quelle UE ---
+    private void createFullUE(String code, String ref, String nom, int nbPeriodes, int ects, int niveau, String prgm, List<Acquis> listeAcquis) {
+        // On évite les doublons
+        if (!ueDao.existsByCode(code)) {
+            UE ue = UE.builder()
+                    .code(code)
+                    .ref(ref)
+                    .nom(nom)
+                    .nbPeriodes(nbPeriodes)
+                    .ects(ects)
+                    .niveau(niveau)
+                    .prgm(prgm) // Peut être null, c'est OK
+                    .build();
+
+            // Si on a des acquis, on les ajoute
+            if (listeAcquis != null && !listeAcquis.isEmpty()) {
+                ue.setAcquis(listeAcquis);
+            }
+            
+            ueDao.save(ue);
+        }
     }
 
     @Transactional
@@ -140,14 +195,6 @@ public class SeedData {
     //                              HELPER METHODS (LA BOÎTE A OUTILS)
     // ===================================================================================
 
-    private void createUeIfMissing(String code, String nom, int ects, int periodes) {
-        if (!ueDao.existsByCode(code)) {
-            ueDao.save(UE.builder()
-                    .code(code).ref("REF-" + code).nom(nom).ects(ects).nbPeriodes(periodes)
-                    .build());
-        }
-    }
-
     private KbSchool createSchool(String code, String nom, String url) {
         return schoolDao.save(KbSchool.builder().code(code).etablissement(nom).urlProgramme(url).build());
     }
@@ -188,18 +235,4 @@ public class SeedData {
         ruleDao.save(rule);
     }
 
-    private void createIPAP() {
-        String prgm = "* d'identifier différents langages de programmation existants ..."; // Abrégé
-        UE pap = UE.builder()
-                .code("IPAP").ref("7521 05 U32 D3").nom("PRINCIPES ALGORITHMIQUES ET PROGRAMMATION")
-                .ects(8).nbPeriodes(120).prgm(prgm).build();
-
-        pap.setAcquis(List.of(
-            new Acquis("mettre en oeuvre une représentation algorithmique", 30),
-            new Acquis("développer au moins un programme", 30),
-            new Acquis("procédures de test", 20),
-            new Acquis("justifier la démarche", 20)
-        ));
-        ueDao.save(pap);
-    }
 }
