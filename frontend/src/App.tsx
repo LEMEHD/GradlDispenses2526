@@ -5,6 +5,8 @@ import { CreateRequest } from './pages/CreateRequest';
 import { LandingPage } from './pages/LandingPage';
 import { UEList } from './pages/UEList';
 import { Profile } from './pages/Profile';
+// CORRECTION : Ajout de l'import manquant
+import { UEDetail } from './pages/UEDetail';
 import { Home } from 'lucide-react';
 
 const queryClient = new QueryClient({
@@ -62,6 +64,7 @@ function App() {
                             <Route path="/new" element={<CreateRequest />} />
                             <Route path="/ues" element={<UEList />} />
                             <Route path="/profile" element={<Profile />} />
+                            <Route path="/ue/:code" element={<UEDetail />} />
                         </Routes>
                     </main>
                 </div>

@@ -1,12 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { api } from '../services/api';
-// On garde BookOpen car on va l'utiliser
 import { BookOpen, Search } from 'lucide-react';
-import { Link } from 'react-router-dom';
+// CORRECTION : Un seul import groupé pour Link et useNavigate
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 export const UEList = () => {
     const [searchTerm, setSearchTerm] = useState('');
+    const navigate = useNavigate(); // <--- Hook pour naviguer
 
     const { data: ues, isLoading } = useQuery({
         queryKey: ['ues'],
@@ -58,18 +59,39 @@ export const UEList = () => {
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nom de l'UE</th>
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Périodes</th>
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ECTS</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NIVEAU</th>
                         </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
                         {filteredUes?.map((ue) => (
-                            <tr key={ue.id} className="hover:bg-gray-50 transition-colors">
-                                <td className="px-6 py-4 whitespace-nowrap font-mono text-sm text-indigo-600 font-medium">{ue.code}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{ue.nom}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{ue.nbPeriodes} p.</td>
+                            <tr
+                                key={ue.id}
+                                // --- MODIFICATIONS ICI ---
+                                onClick={() => navigate(`/ue/${ue.code}`)}
+                                className="hover:bg-indigo-50 transition-colors cursor-pointer group"
+                                // -------------------------
+                            >
+                                <td className="px-6 py-4 whitespace-nowrap font-mono text-sm text-indigo-600 font-medium group-hover:text-indigo-800">
+                                    {ue.code}
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 group-hover:font-medium">
+                                    {ue.nom}
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {ue.nbPeriodes} p.
+                                </td>
                                 <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                      {ue.ects} ECTS
-                    </span>
+                                    <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                      {ue.ects} ECTS
+                                    </span>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                    <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full 
+                                        ${ue.niveau === 1 ? 'bg-green-100 text-green-800' :
+                                        ue.niveau === 2 ? 'bg-yellow-100 text-yellow-800' :
+                                            'bg-red-100 text-red-800'}`}>
+                                        B{ue.niveau}
+                                    </span>
                                 </td>
                             </tr>
                         ))}

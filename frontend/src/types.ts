@@ -39,6 +39,7 @@ export interface UE {
     nom: string;
     nbPeriodes: number;
     ects: number;
+    niveau: number;
     prgm?: string;
     acquis?: Acquis[];
 }
