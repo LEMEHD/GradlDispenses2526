@@ -316,7 +316,7 @@
       { "description": "Critère de maîtrise : Niveau de cohérence", "pourcentage": 1 },
       { "description": "Critère de maîtrise : Niveau de précision", "pourcentage": 1 },
       { "description": "Critère de maîtrise : Niveau d'intégration", "pourcentage": 1 },
-      { "description": "Critère de maîtrise : Niveau d'autonomie", "pourcentage": 1 }
+      { "description": "Critère de maîtrise : Niveau d'autonomie", "pourcentage": 2 }
     ]
   },
   {
